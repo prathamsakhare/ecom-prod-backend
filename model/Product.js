@@ -32,4 +32,14 @@ const productSchema = new Schema({
   deleted: { type: Boolean, required: true, default: false },
 });
 
+
+//! this piece of code is written to remove that '_' before '_id' in database, so when we are working with frontend, we don't have to write '_id' instead we can write 'id' only
+
+const virtual = productSchema.virtual("id");
+virtual.get(function () {
+    return this._id
+});
+productSchema.set("toJSON", { virtuals: true, versionKey: false, transform: function (doc, ret) { delete ret._id }  });
+
+
 exports.Product = mongoose.model("Product", productSchema);
