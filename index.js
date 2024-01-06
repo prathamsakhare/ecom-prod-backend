@@ -6,7 +6,11 @@ const PORT = 8080;
 
 // connection with mongoose
 const mongoose = require("mongoose");
+const { createProduct } = require('./controller/Product');
 // ! after doing this make connection with mongodb, for that, go to your project directory, outside your project directory, make new dir named as "data", after that, go to one step above that data directory, and run this command "mongod --dbpath=./data", this will start your mongodb server, now you can connect with mongodb
+
+// * Middleware
+server.use(express.json()); // this will parse the json data from the body of the request
 
 
 main().catch(err => console.log(err));
@@ -19,6 +23,8 @@ async function main(){
 server.get('/', (req, res) => {
     res.json({status : 'success'});
 });
+
+server.post('/products', createProduct);
 
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}...`);
