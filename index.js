@@ -4,6 +4,9 @@ const express = require('express');
 const server = express();
 const PORT = 8080;
 
+//Routes 
+const productRouter = require('./routes/Product');
+
 // connection with mongoose
 const mongoose = require("mongoose");
 const { createProduct } = require('./controller/Product');
@@ -12,6 +15,8 @@ const { createProduct } = require('./controller/Product');
 // * Middleware
 server.use(express.json()); // this will parse the json data from the body of the request
 
+// * Routes
+server.use('/products', productRouter.router);
 
 main().catch(err => console.log(err));
 
@@ -24,7 +29,7 @@ server.get('/', (req, res) => {
     res.json({status : 'success'});
 });
 
-server.post('/products', createProduct);
+
 
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}...`);
