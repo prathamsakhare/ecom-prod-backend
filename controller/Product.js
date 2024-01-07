@@ -13,6 +13,7 @@ exports.createProduct = (req, res) => {
     });
 };
 
+// Fetching all products
 exports.fetchAllProducts = async (req, res) => {
   let query = Product.find();
   let totalProductsQuery = Product.find();
