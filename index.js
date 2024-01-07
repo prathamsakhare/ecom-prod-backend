@@ -6,6 +6,8 @@ const PORT = 8080;
 
 //Routes 
 const productRouter = require('./routes/Product');
+const brandRouter = require('./routes/Brand');
+const categoryRouter = require('./routes/Category');
 
 // connection with mongoose
 const mongoose = require("mongoose");
@@ -17,6 +19,8 @@ server.use(express.json()); // this will parse the json data from the body of th
 
 // * Routes
 server.use('/products', productRouter.router);
+server.use('/brands', brandRouter.router);
+server.use('/categories', categoryRouter.router);
 
 main().catch(err => console.log(err));
 
