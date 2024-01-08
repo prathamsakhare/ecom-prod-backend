@@ -12,17 +12,7 @@ exports.fetchUserById = async (req, res) => {
   }
 };
 
-exports.createUser = (req, res) => {
-  const user = new User(req.body);
-  user
-    .save()
-    .then((user) => {
-      res.json({ status: "success", user });
-    })
-    .catch((err) => {
-      res.json({ status: "error", message: err.message });
-    });
-};
+
 
 exports.updateUser = async (req, res) => {
   const { id } = req.params;

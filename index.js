@@ -11,6 +11,9 @@ const cors = require('cors');
 const productRouter = require('./routes/Product');
 const brandRouter = require('./routes/Brand');
 const categoryRouter = require('./routes/Category');
+const userRouter = require('./routes/User');
+const authRouter = require('./routes/Auth');
+const cartRouter = require('./routes/Cart');
 
 // connection with mongoose
 const mongoose = require("mongoose");
@@ -28,6 +31,9 @@ server.use(express.json()); // this will parse the json data from the body of th
 server.use('/products', productRouter.router);
 server.use('/brands', brandRouter.router);
 server.use('/categories', categoryRouter.router);
+server.use('/users', userRouter.router);
+server.use('/auth', authRouter.router);
+server.use('/cart', cartRouter.router);
 
 main().catch(err => console.log(err));
 
